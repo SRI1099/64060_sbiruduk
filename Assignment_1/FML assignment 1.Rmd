@@ -1,0 +1,33 @@
+---
+title: "FML assignment 1"
+author: "SRIKANTH BIRUDUKOTA"
+date: "2023-09-11"
+output: html_document
+---
+
+
+The Dataset is sourced from Chat GPT as Dataset_sri
+```{r}
+Dataset_sri <- read.csv("C:/Users/srika/OneDrive/Desktop/Dataset_sri.csv")
+Dataset_sri
+```
+
+```{r}
+library(fBasics)
+options(scipen = 999)
+basicStats(data.frame(Dataset_sri$Age,Dataset_sri$Income))
+```
+
+```{r}
+library(caret)
+Model_range_normalized<-preProcess(Dataset_sri,method = "range")
+Dataset_copy=predict(Model_range_normalized,Dataset_sri)
+summary(Dataset_copy)
+```
+```{r}
+hist(Dataset_copy$Age )
+#Graphical representation is a histogram with the selected variable points
+x <- Dataset_copy$Age
+y <- Dataset_copy$Income
+plot(x, y,  xlab = "Age", ylab = "Income")
+```
